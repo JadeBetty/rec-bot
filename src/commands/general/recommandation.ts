@@ -1,4 +1,4 @@
-import { ActionRowBuilder, ButtonBuilder, ButtonStyle, CommandInteraction, EmbedBuilder, SlashCommandBuilder } from 'discord.js';
+import { ActionRowBuilder, ButtonBuilder, ButtonStyle, CommandInteraction, EmbedBuilder, SlashCommandBuilder, StringSelectMenuBuilder, StringSelectMenuOptionBuilder } from 'discord.js';
 const command = {
     data: new SlashCommandBuilder()
     .setName("recommend")
@@ -21,26 +21,48 @@ const command = {
             components: [
                 new ActionRowBuilder()
                 .setComponents(
-                    new ButtonBuilder()
-                    .setLabel("Portraits")
-                    .setCustomId(`portraits-${interaction.user.id}`)
-                    .setStyle(ButtonStyle.Success),
-                    new ButtonBuilder()
-                    .setLabel("Landscapes")
-                    .setCustomId(`landscapes-${interaction.user.id}`)
-                    .setStyle(ButtonStyle.Success),
-                    new ButtonBuilder()
-                    .setLabel("Vehicles")
-                    .setCustomId(`vehicles-${interaction.user.id}`)
-                    .setStyle(ButtonStyle.Success),
-                    new ButtonBuilder()
-                    .setLabel("Aviation")
-                    .setCustomId(`avaition-${interaction.user.id}`)
-                    .setStyle(ButtonStyle.Success),
-                    new ButtonBuilder()
-                    .setLabel("Next")
-                    .setCustomId(`next-${interaction.user.id}`)
-                    .setStyle(ButtonStyle.Danger),
+
+                    new StringSelectMenuBuilder()
+                    .setCustomId(`photo-${interaction.user.id}`)
+                    .setPlaceholder("Style of photography")
+                    .setOptions(
+                        new StringSelectMenuOptionBuilder()
+                        .setLabel("⛰ Landscape photography")
+                        .setValue("landscape"),
+                        new StringSelectMenuOptionBuilder()
+                        .setLabel("🌆 Urban photography")
+                        .setValue("urban"),
+                        new StringSelectMenuOptionBuilder()
+                        .setLabel("🚻 Portrait photography")
+                        .setValue("portrait"),
+                        new StringSelectMenuOptionBuilder()
+                        .setLabel("🚗 Automobile photography")
+                        .setValue("automobile"),
+                        new StringSelectMenuOptionBuilder()
+                        .setLabel("❔ Abstract photography")
+                        .setValue("abstract"),
+                        new StringSelectMenuOptionBuilder()
+                        .setLabel("😹 Wildlife photography")
+                        .setValue("wildlife"),
+                        new StringSelectMenuOptionBuilder()
+                        .setLabel("🏈 Sports photography")
+                        .setValue("sports"),
+                        new StringSelectMenuOptionBuilder()
+                        .setLabel("🤏 Macro photography")
+                        .setValue("marco"),
+                        new StringSelectMenuOptionBuilder()
+                        .setLabel("📦 Products photography")
+                        .setValue("products"),
+                        new StringSelectMenuOptionBuilder()
+                        .setLabel("📃 Documentary photography")
+                        .setValue("docs"),
+                        new StringSelectMenuOptionBuilder()
+                        .setLabel("✨ Events photography")
+                        .setValue("events"),
+
+                    )
+                    .setMinValues(1)
+                    .setMaxValues(11)
                 )
             ]
         })
